@@ -12,7 +12,6 @@ pipeline {
             steps {
                 echo "Building.."
                 sh '''
-                cd ewaste 
                 python3 -m venv .venv
                 source .venv/bin/activate
                 pip install mysql-connector-python 
@@ -23,7 +22,6 @@ pipeline {
             steps {
                 echo "Testing.."
                 sh '''
-                cd ewaste 
                 python3 -m venv .venv
                 source .venv/bin/activate
                 python app.py 

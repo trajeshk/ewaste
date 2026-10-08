@@ -24,7 +24,7 @@ pipeline {
                 sh '''
                 python3 -m venv .venv
                 source .venv/bin/activate
-                python app.py --name=6
+                python app.py --choice 6
                 '''
             }
         }

@@ -48,38 +48,6 @@ def register_user():
     finally:
         cursor.close()
         conn.close()
-def display_userid():
-    """
-    Display list of users registered and their userid  
-    """
-    conn = get_db_connection()
-    if not conn:
-       return 
-    cursor = conn.cursor()
-    print("\n==========================================")
-    print("      DISPLAY E-WASTE REQUESTED Userid      ")
-    print("============================================")
-    query = """
-    SELECT user_id, name
-    FROM users 
-    """
-    try:
-        cursor.execute(query)
-        records = cursor.fetchall()
-
-        if not records:
-            print("\n[INFO]: No userid  requests found in system.")
-        else:
-            print(f"{'User ID':<8} | {'User Name':<15}")
-            print("-" * 88)
-            for row in records:
-                print(f"{row[0]:<8} | {row[1]:<15}")
-    except mysql.connector.Error as err:
-        print(f"[ERROR]: Database query failed: {err}")
-    finally:
-        cursor.close()
-        conn.close()
-
 def log_ewaste_request():
     """
     Logs an e-waste pickup request for an existing user and awards Eco-Points.
@@ -213,28 +181,25 @@ def main_menu():
         print("    E-WASTE MANAGEMENT SYSTEM - CLASS XII CS      ")        
         print("==================================================")
         print("1. Register New Citizen User")
-        print("2. List  Userids")
-        print("3. Submit E-Waste Pickup Request")
-        print("4. Admin: View All Pickup Requests")
-        print("5. Admin: Update Request Fulfillment Status")
-        print("6. Exit System")        
+        print("2. Submit E-Waste Pickup Request")
+        print("3. Admin: View All Pickup Requests")
+        print("4. Admin: Update Request Fulfillment Status")
+        print("5. Exit System")        
         print("==================================================")
-        choice = input("Enter Choice Option (1-6): ").strip()
+        choice = input("Enter Choice Option (1-5): ").strip()
         if choice == '1':
             register_user()
         elif choice == '2':
-            display_userid() 
-        elif choice == '3':
             log_ewaste_request()
-        elif choice == '4':
+        elif choice == '3':
             view_all_requests()
-        elif choice == '5':
+        elif choice == '4':
             update_request_status()
-        elif choice == '6':
+        elif choice == '5':
             print("\nThank you for using E-Waste Management System. Protect the Planet!")
             break
         else:
-            print("\n[INVALID]: Option not recognized. Please choose from 1 to 6.")
+            print("\n[INVALID]: Option not recognized. Please choose from 1 to 5.")
 if __name__ == "__main__":
     main_menu()
 

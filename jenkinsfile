@@ -12,8 +12,7 @@ pipeline {
             steps {
                 echo "Building.."
                 sh '''
-                python3 -m venv .venv
-                sh 'python3 -m pip install mysql-connector-python'
+                python3 -m pip install mysql-connector-python
                 '''
             }
         }
